@@ -1,11 +1,27 @@
 import time
 import os
+import sys
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+
+
+
+
+USERNAME = "fill in your username here"
+PASSWORD = "fill in your password here"
+
+
+
+
+
+
+
+
 
 def opener(name, path):
     service = Service(ChromeDriverManager().install())
@@ -22,13 +38,28 @@ def opener(name, path):
     driver = webdriver.Chrome(service=service, options=options)
     return driver
 
+def makeSureNameAndPassword():
+    # Check if the username and password are filled in
+    if USERNAME == "fill in your username here":
+        print("Please fill in your username in the USERNAME variable")
+    if PASSWORD == "fill in your password here":
+        print("Please fill in your password in the PASSWORD variable")
+    if USERNAME == "fill in your username here" or PASSWORD == "fill in your password here":
+        print("Please fill in your username and password in the USERNAME and PASSWORD variable")
+    
+    # Automatically exit the program if the username and password are not filled in
+    if USERNAME != "fill in your username here" and PASSWORD != "fill in your password here":
+        pass
+    else:
+        sys.exit()
+
 driver = opener("1", os.getcwd())
 driver.get("https://sadewa.upnyk.ac.id/login")
 time.sleep(20)
 
-try:    
 
-    # Log in
+try:    
+    # Attempt to login
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "form_login")))
 
     # Find the login form
@@ -40,13 +71,18 @@ try:
         if len(form_groups) >= 2:
             username_input = form_groups[0].find_element(By.TAG_NAME, "input")
             password_input = form_groups[1].find_element(By.TAG_NAME, "input")
-            
+
+            # Check if the username and password are filled in
+            makeSureNameAndPassword()
+
             # Enter your username and password
-            username_input.send_keys("fill in your username here")
-            password_input.send_keys("fill in your password here")
+            username_input.send_keys(USERNAME)
+            password_input.send_keys(PASSWORD)
 
             # Wait for a short period to ensure the page loads the captcha and manually solve it
-            # Fell free to adjust the waiting time
+            # +----------------------------------------+
+            # |  Feel free to adjust the waiting time  |
+            # +----------------------------------------+
             time.sleep(20)
 
             # Submit the form
@@ -55,6 +91,12 @@ try:
     # Wait for login to complete
     WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.ID, "form_kuisoner-p-0")))
 
+    # Fill in the survey form
+    # +------------------------------------------------------+
+    # |  Feel free to adjust the range of the loop,          |
+    # |  depending on the number of sections in the survey,  |
+    # |  in this case, the survey has 10 sections            |
+    # +------------------------------------------------------+
     for i in range(10):
         # Construct the section ID
         section_id = f"form_kuisoner-p-{i}"
@@ -98,3 +140,4 @@ finally:
     time.sleep(5)
     # Close the browser after completing the task
     driver.quit()
+
