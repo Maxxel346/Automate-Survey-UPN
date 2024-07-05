@@ -52,8 +52,5 @@ python SurveyUPN.py
 
 Contributions are always welcome! Please submit a pull request or open an issue to discuss changes.
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more information.
 
   
