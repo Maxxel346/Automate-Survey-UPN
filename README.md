@@ -11,15 +11,15 @@ Before you begin, ensure you have met the following requirements:
 - You have installed the necessary Python packages using the following command:
 
   ```bash
-  pip install selenium webdriver-manager
+  pip install -r requirements.txt
   ```
 
 ## Usage
 # 1. Clone this repository to your local machine:
 
  ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/Maxxel346/Survey-UPN-Automate.git
+cd Survey-UPN-Automate
  ```
 
 # 2. Update the USERNAME and PASSWORD variables in the script with your credentials:
