@@ -18,8 +18,8 @@ Before you begin, ensure you have met the following requirements:
 # 1. Clone this repository to your local machine:
 
  ```bash
-git clone https://github.com/Maxxel346/Survey-UPN-Automate.git
-cd Survey-UPN-Automate
+git clone https://github.com/Maxxel346/Automate-UPN-Survey.git
+cd Automate-UPN-Survey
  ```
 
 # 2. Update the USERNAME and PASSWORD variables in the script with your credentials:
